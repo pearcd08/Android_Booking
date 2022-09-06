@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "868961221784",
+    "firebase_url": "https://licence-booking-default-rtdb.firebaseio.com",
+    "project_id": "licence-booking",
+    "storage_bucket": "licence-booking.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:868961221784:android:147ac8a46e7514676a24ed",
+        "android_client_info": {
+          "package_name": "com.example.assignmentone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "868961221784-d9cc8lpsusmn8vdqe2ncveri9e93v17p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0oVRLJVplWKt7tsZBUicKIkZJn66fnjQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "868961221784-d9cc8lpsusmn8vdqe2ncveri9e93v17p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
