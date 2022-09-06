@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
         fbDB = FirebaseDatabase.getInstance();
         dbRef = fbDB.getReference();
 
-        txtLicence = (EditText) findViewById(R.id.txt_loginLicence);
-        txtPassword = (EditText) findViewById(R.id.txt_loginPassword);
+        txtLicence = findViewById(R.id.txt_loginLicence);
+        txtPassword = findViewById(R.id.txt_loginPassword);
 
 
     }
@@ -47,28 +47,36 @@ public class MainActivity extends AppCompatActivity {
 
         String licence = txtLicence.getText().toString();
         String password = txtPassword.getText().toString();
-        dbRef.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.hasChild(licence)) {
-                    final String dbPassword = snapshot.child(licence).child("password").getValue(String.class);
 
-                    if (dbPassword.equals(password)) {
-                        Intent i = new Intent(MainActivity.this, UserHome.class);
+        if (txtLicence.equals("admin") && txtPassword.equals("admin")) {
+            //open admin/employee page
 
-                        i.putExtra("userLicence", licence);
-                        startActivity(i);
+        } else {
+            //check LicenceNo with Password from firebase databse
+            dbRef.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.hasChild(licence)) {
+                        final String dbPassword = snapshot.child(licence).child("password").getValue(String.class);
+
+                        if (dbPassword.equals(password)) {
+                            Intent i = new Intent(MainActivity.this, UserHome.class);
+
+                            i.putExtra("userLicence", licence);
+                            startActivity(i);
+
+                        }
 
                     }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
                 }
-            }
+            });
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        }
 
 
     }

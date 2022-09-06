@@ -3,9 +3,14 @@ package com.example.assignmentone;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.CalendarContract;
+import android.view.View;
 import android.widget.Toast;
 
+import com.example.assignmentone.db.Booking;
+import com.example.assignmentone.db.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -53,6 +58,23 @@ public class UserBooking3 extends AppCompatActivity {
             });
 
         }
+
+    }
+
+    public void confirmBooking(View view) {
+        String id = dbRef.push().getKey();
+        Booking b = new Booking(userLicence, date, time);
+        dbRef.child("bookings").child(id).setValue(b);
+        Intent intent = new Intent(Intent.ACTION_INSERT);
+        intent.setData(CalendarContract.Events.CONTENT_URI);
+        intent.putExtra(CalendarContract.Events.TITLE, "Driving Test");
+        intent.putExtra(CalendarContract.Events.EVENT_LOCATION, "Location of Test");
+        intent.putExtra(CalendarContract.Events.DESCRIPTION, "Driving Test at "+ time);
+
+        startActivity(intent);
+
+
+
 
     }
 }

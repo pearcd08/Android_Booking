@@ -14,7 +14,7 @@ public class TimeBooking_Holder extends RecyclerView.ViewHolder {
 
     public TimeBooking_Holder(@NonNull View itemView) {
         super(itemView);
-        tvTime = (TextView) itemView.findViewById(R.id.tv_time);
+        tvTime = itemView.findViewById(R.id.tv_time);
         tvTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

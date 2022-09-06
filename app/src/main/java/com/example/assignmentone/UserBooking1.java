@@ -29,7 +29,7 @@ public class UserBooking1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_booking);
 
-        btnNext = (Button) findViewById(R.id.btn_confirmDate);
+        btnNext = findViewById(R.id.btn_confirmDate);
         //disable the button on load
         btnNext.setEnabled(false);
 
@@ -37,7 +37,7 @@ public class UserBooking1 extends AppCompatActivity {
         if (extras != null) {
             userLicence = extras.getString("userLicence");
         }
-        calendarView = (CalendarView) findViewById(R.id.cal_booking);
+        calendarView = findViewById(R.id.cal_booking);
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {

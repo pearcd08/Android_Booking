@@ -31,12 +31,12 @@ public class RegisterUser extends AppCompatActivity {
         fbDB = FirebaseDatabase.getInstance();
         dbRef = fbDB.getReference();
 
-        txt_fName = (EditText) findViewById(R.id.txt_firstName);
-        txt_lName = (EditText) findViewById(R.id.txt_lastName);
-        txt_licence = (EditText) findViewById(R.id.txt_licence);
-        txt_email = (EditText) findViewById(R.id.txt_email);
-        txt_password = (EditText) findViewById(R.id.txt_password);
-        txt_confirmPassword = (EditText) findViewById(R.id.txt_confirmPassword);
+        txt_fName = findViewById(R.id.txt_firstName);
+        txt_lName = findViewById(R.id.txt_lastName);
+        txt_licence = findViewById(R.id.txt_licence);
+        txt_email = findViewById(R.id.txt_email);
+        txt_password = findViewById(R.id.txt_password);
+        txt_confirmPassword = findViewById(R.id.txt_confirmPassword);
 
     }
 
@@ -97,23 +97,17 @@ public class RegisterUser extends AppCompatActivity {
 
 
     private boolean checkValues() {
-        if (txt_fName.getText().toString().isEmpty() &&
-                txt_lName.getText().toString().isEmpty() &&
-                txt_licence.getText().toString().isEmpty() &&
-                txt_email.getText().toString().isEmpty() &&
-                txt_password.getText().toString().isEmpty() &&
-                txt_confirmPassword.getText().toString().isEmpty()) {
-            return false;
-        }
-        return true;
+        return !txt_fName.getText().toString().isEmpty() ||
+                !txt_lName.getText().toString().isEmpty() ||
+                !txt_licence.getText().toString().isEmpty() ||
+                !txt_email.getText().toString().isEmpty() ||
+                !txt_password.getText().toString().isEmpty() ||
+                !txt_confirmPassword.getText().toString().isEmpty();
 
     }
 
     private boolean checkPassword(String p1, String p2) {
-        if (!p1.equals(p2)) {
-            return false;
-        }
-        return true;
+        return p1.equals(p2);
 
     }
 }

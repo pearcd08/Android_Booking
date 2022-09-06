@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class TimeBooking_Adapter extends RecyclerView.Adapter<TimeBooking_Holder> {
-    String data[];
+    String[] data;
 
     public TimeBooking_Adapter(String[] data) {
         this.data = data;

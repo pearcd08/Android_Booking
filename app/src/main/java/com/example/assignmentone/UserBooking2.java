@@ -23,7 +23,7 @@ public class UserBooking2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_booking2);
-        rvTime = (RecyclerView) findViewById(R.id.rv_time);
+        rvTime = findViewById(R.id.rv_time);
 
         displayDate();
         displayTimes();
@@ -33,7 +33,7 @@ public class UserBooking2 extends AppCompatActivity {
     }
 
     private void displayDate(){
-        tvDate = (TextView) findViewById(R.id.tv_displayDate);
+        tvDate = findViewById(R.id.tv_displayDate);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
