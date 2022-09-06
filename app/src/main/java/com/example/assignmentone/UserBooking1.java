@@ -2,6 +2,7 @@ package com.example.assignmentone;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -19,44 +20,40 @@ public class UserBooking1 extends AppCompatActivity {
     private String date;
     private TextView tvSelectTime;
     private CalendarView calendarView;
-    private RecyclerView rvTime;
-    private Button btnConfirm;
+
+    private Button btnNext;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_booking);
 
-        tvSelectTime = (TextView) findViewById(R.id.tv_selectTime);
-        rvTime = (RecyclerView) findViewById(R.id.rv_time);
-        btnConfirm = (Button) findViewById(R.id.btn_confirmBooking);
-
+        btnNext = (Button) findViewById(R.id.btn_confirmDate);
         //disable the button on load
-        btnConfirm.setEnabled(false);
+        btnNext.setEnabled(false);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             userLicence = extras.getString("userLicence");
         }
-
         calendarView = (CalendarView) findViewById(R.id.cal_booking);
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
                 date = (i1 + 1) + "/" + i2 + "/" + i;
-                tvSelectTime.setText("Select time for " + date);
-                rvTime.requestFocus();
-
+                btnNext.setEnabled(true);
 
             }
         });
         calendarView.setMinDate((new Date().getTime()));
-
-
     }
 
-    public void confirmBooking(View view) {
+
+    public void openBookingTwo(View view) {
         Intent intent = new Intent(UserBooking1.this, UserBooking2.class);
         intent.putExtra("date", date);
-        startActivity(intent);    }
+        intent.putExtra("userLicence", userLicence);
+        startActivity(intent);
+    }
 }
