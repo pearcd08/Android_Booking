@@ -1,29 +1,23 @@
 package com.example.assignmentone;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.assignmentone.db.User;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-
-import java.io.Serializable;
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
 
-    EditText txtLicence, txtPassword;
+    EditText txtEmail, txtPassword;
 
     private FirebaseDatabase fbDB;
     private DatabaseReference dbRef;
@@ -37,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         fbDB = FirebaseDatabase.getInstance();
         dbRef = fbDB.getReference();
 
-        txtLicence = findViewById(R.id.txt_loginLicence);
+        txtEmail = findViewById(R.id.txt_loginEmail);
         txtPassword = findViewById(R.id.txt_loginPassword);
 
 
@@ -45,30 +39,42 @@ public class MainActivity extends AppCompatActivity {
 
     public void loginUser(View view) {
 
-        String licence = txtLicence.getText().toString();
-        String password = txtPassword.getText().toString();
 
-        if (txtLicence.equals("admin") && txtPassword.equals("admin")) {
+        String loginEmail = txtEmail.getText().toString();
+        String loginPassword = txtPassword.getText().toString();
+
+        if (loginEmail.equals("admin") && loginPassword.equals("admin")) {
             //open admin/employee page
 
         } else {
-            //check LicenceNo with Password from firebase databse
+
             dbRef.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (snapshot.hasChild(licence)) {
-                        final String dbPassword = snapshot.child(licence).child("password").getValue(String.class);
+                    for (DataSnapshot userData : snapshot.getChildren()) {
+                        String userID = userData.getKey();
+                        String dbEmail = userData.child("email").getValue(String.class);
+                        if (dbEmail.equals(loginEmail)) {
+                            final String dbPassword = userData.child("password").getValue(String.class);
 
-                        if (dbPassword.equals(password)) {
-                            Intent i = new Intent(MainActivity.this, UserHome.class);
+                            if (dbPassword.equals(loginPassword)) {
 
-                            i.putExtra("userLicence", licence);
-                            startActivity(i);
+                                Intent i = new Intent(MainActivity.this, UserHome.class);
+
+                                i.putExtra("userID", userID);
+                                startActivity(i);
+
+                            }
+                            else{
+                                Toast.makeText(MainActivity.this, "Incorrect Password",
+                                        Toast.LENGTH_SHORT).show();
+                                txtEmail.requestFocus();
+                            }
 
                         }
-
                     }
                 }
+
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {

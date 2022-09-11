@@ -58,16 +58,17 @@ public class RegisterUser extends AppCompatActivity {
         dbRef.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.hasChild(licence)) {
-                    Toast.makeText(RegisterUser.this, "Licence already exists",
+                if (snapshot.hasChild(email)) {
+                    Toast.makeText(RegisterUser.this, "That email is already registered",
                             Toast.LENGTH_SHORT).show();
                     txt_licence.requestFocus();
 
                 } else {
                     if (checkValues() == true) {
-                        if (checkPassword(password, password2) == true) {
-                            User u = new User(name, email, password);
-                            dbRef.child("users").child(licence).setValue(u);
+                        if (password2.equals(password2)) {
+                            String id = dbRef.push().getKey();
+                            User u = new User(name, licence, email, password);
+                            dbRef.child("users").child(id).setValue(u);
                             Toast.makeText(RegisterUser.this, name + " has been registered ",
                                     Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(RegisterUser.this, MainActivity.class);
@@ -106,8 +107,4 @@ public class RegisterUser extends AppCompatActivity {
 
     }
 
-    private boolean checkPassword(String p1, String p2) {
-        return p1.equals(p2);
-
-    }
 }

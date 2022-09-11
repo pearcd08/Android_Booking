@@ -19,7 +19,7 @@ public class UserHome extends AppCompatActivity {
     private FirebaseDatabase fbDB;
     private DatabaseReference dbRef;
 
-    private String userLicence;
+    private String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class UserHome extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            userLicence = extras.getString("userLicence");
+            userID = extras.getString("userID");
         }
         welcomeUser();
 
@@ -45,7 +45,7 @@ public class UserHome extends AppCompatActivity {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                final String userName = snapshot.child(userLicence).child("name").getValue(String.class);
+                final String userName = snapshot.child(userID).child("name").getValue(String.class);
                 tvWelcome.setText("Welcome " + userName);
 
             }
@@ -59,7 +59,7 @@ public class UserHome extends AppCompatActivity {
 
     public void openBookTest(View view) {
         Intent i = new Intent(UserHome.this, UserBooking1.class);
-        i.putExtra("userLicence", userLicence);
+        i.putExtra("userID", userID);
         startActivity(i);
 
     }

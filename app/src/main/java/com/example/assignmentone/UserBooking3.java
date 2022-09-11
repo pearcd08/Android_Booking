@@ -19,7 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class UserBooking3 extends AppCompatActivity {
 
-    private String date, time, userLicence, userName;
+    private String date, time, userID, userName, userLicence;
     private FirebaseDatabase fbDB;
     private DatabaseReference dbRef;
 
@@ -37,14 +37,15 @@ public class UserBooking3 extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             date = extras.getString("date");
-            userLicence = extras.getString("userLicence");
+            userID = extras.getString("userID");
             time = extras.getString("time");
 
             dbRef.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (snapshot.hasChild(userLicence)){
-                        userName = snapshot.child(userLicence).child("name").getValue(String.class);
+                    if (snapshot.hasChild(userID)){
+                        userName = snapshot.child(userID).child("name").getValue(String.class);
+                        userLicence = snapshot.child(userID).child("licence").getValue(String.class);
                         Toast.makeText(UserBooking3.this, "Customer: " + userName +
                                 " Date: " + date + " Time: " + time, Toast.LENGTH_LONG).show();
                     }
@@ -65,13 +66,13 @@ public class UserBooking3 extends AppCompatActivity {
         String id = dbRef.push().getKey();
         Booking b = new Booking(userLicence, date, time);
         dbRef.child("bookings").child(id).setValue(b);
-        Intent intent = new Intent(Intent.ACTION_INSERT);
-        intent.setData(CalendarContract.Events.CONTENT_URI);
-        intent.putExtra(CalendarContract.Events.TITLE, "Driving Test");
-        intent.putExtra(CalendarContract.Events.EVENT_LOCATION, "Location of Test");
-        intent.putExtra(CalendarContract.Events.DESCRIPTION, "Driving Test at "+ time);
+        //Intent intent = new Intent(Intent.ACTION_INSERT);
+       // intent.setData(CalendarContract.Events.CONTENT_URI);
+       // intent.putExtra(CalendarContract.Events.TITLE, "Driving Test");
+       // intent.putExtra(CalendarContract.Events.EVENT_LOCATION, "Location of Test");
+     //   intent.putExtra(CalendarContract.Events.DESCRIPTION, "Driving Test at "+ time);
 
-        startActivity(intent);
+       // startActivity(intent);
 
 
 

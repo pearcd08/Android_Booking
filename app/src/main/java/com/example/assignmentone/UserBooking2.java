@@ -13,7 +13,7 @@ public class UserBooking2 extends AppCompatActivity {
 
     private String date;
     public static String time;
-    private String userLicence;
+    private String userID;
     private TextView tvDate;
     private RecyclerView rvTime;
     private TimeBooking_Holder rvHolder;
@@ -38,7 +38,7 @@ public class UserBooking2 extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             date = extras.getString("date");
-            userLicence = extras.getString("userLicence");
+            userID = extras.getString("userID");
             tvDate.setText("Bookings for " + date);
 
         }
@@ -59,7 +59,7 @@ public class UserBooking2 extends AppCompatActivity {
         Intent intent = new Intent(this, UserBooking3.class);
         intent.putExtra("date", date);
         intent.putExtra("time", time);
-        intent.putExtra("userLicence", userLicence);
+        intent.putExtra("userID", userID);
         startActivity(intent);
     }
 }

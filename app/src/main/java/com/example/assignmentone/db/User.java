@@ -9,11 +9,13 @@ import java.io.Serializable;
 @Entity
 public class User{
     private String name;
+    private String licence;
     private String email;
     private String password;
 
-    public User(String name, String email, String password) {
+    public User(String name, String licence, String email, String password) {
         this.name = name;
+        this.licence = licence;
         this.email = email;
         this.password = password;
     }
@@ -24,6 +26,14 @@ public class User{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getLicence() {
+        return licence;
+    }
+
+    public void setLicence(String licence) {
+        this.licence = licence;
     }
 
     public String getEmail() {
@@ -46,6 +56,7 @@ public class User{
     public String toString() {
         return "User{" +
                 "name='" + name + '\'' +
+                ", licence='" + licence + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';

@@ -16,7 +16,7 @@ import java.util.Date;
 
 public class UserBooking1 extends AppCompatActivity {
 
-    private String userLicence;
+    private String userID;
     private String date;
     private TextView tvSelectTime;
     private CalendarView calendarView;
@@ -35,7 +35,7 @@ public class UserBooking1 extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            userLicence = extras.getString("userLicence");
+            userID = extras.getString("userID");
         }
         calendarView = findViewById(R.id.cal_booking);
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -53,7 +53,7 @@ public class UserBooking1 extends AppCompatActivity {
     public void openBookingTwo(View view) {
         Intent intent = new Intent(UserBooking1.this, UserBooking2.class);
         intent.putExtra("date", date);
-        intent.putExtra("userLicence", userLicence);
+        intent.putExtra("userID", userID);
         startActivity(intent);
     }
 }
