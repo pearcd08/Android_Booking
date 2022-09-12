@@ -7,12 +7,19 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 public class TimeBooking_Adapter extends RecyclerView.Adapter<TimeBooking_Holder> {
     String[] data;
 
+
+
     public TimeBooking_Adapter(String[] data) {
         this.data = data;
+
     }
+
+
 
     @NonNull
     @Override
@@ -28,6 +35,7 @@ public class TimeBooking_Adapter extends RecyclerView.Adapter<TimeBooking_Holder
     @Override
     public void onBindViewHolder(@NonNull TimeBooking_Holder holder, int position) {
         holder.tvTime.setText(data[position]);
+
 
     }
 

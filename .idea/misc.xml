@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/layout/activity_admin_menu.xml" value="0.25" />
         <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/layout/activity_confirm_booking.xml" value="0.25" />
         <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
+        <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/layout/activity_register_instructor.xml" value="0.33489583333333334" />
         <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/layout/activity_register_user.xml" value="0.25" />
         <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/layout/activity_user_booking.xml" value="0.25" />
         <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/layout/activity_user_booking2.xml" value="0.22447916666666667" />

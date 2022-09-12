@@ -37,18 +37,9 @@
         android:id="@+id/txt_confirmBooking_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="date goes here" />
+        android:hint="Time goes here" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Address: " />
 
-    <EditText
-        android:id="@+id/txt_confirmBooking_Address"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="7 Crum Avenue, New Lynn, Auckland" />
 
     //map go here
 

@@ -65,7 +65,7 @@ public class RegisterUser extends AppCompatActivity {
 
                 } else {
                     if (checkValues() == true) {
-                        if (password2.equals(password2)) {
+                        if (password.equals(password2)) {
                             String id = dbRef.push().getKey();
                             User u = new User(name, licence, email, password);
                             dbRef.child("users").child(id).setValue(u);

@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class TimeBooking_Holder extends RecyclerView.ViewHolder {
-    public TextView tvTime;
+    public TextView tvTime, tvInstructor;
 
 
     public TimeBooking_Holder(@NonNull View itemView) {

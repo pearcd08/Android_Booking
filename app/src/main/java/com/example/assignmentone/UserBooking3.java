@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.CalendarContract;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.assignmentone.db.Booking;
@@ -20,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 public class UserBooking3 extends AppCompatActivity {
 
     private String date, time, userID, userName, userLicence;
+    private EditText txt_date, txt_time, txt_instructor;
     private FirebaseDatabase fbDB;
     private DatabaseReference dbRef;
 
@@ -30,10 +33,16 @@ public class UserBooking3 extends AppCompatActivity {
 
         fbDB = FirebaseDatabase.getInstance();
         dbRef = fbDB.getReference();
+        txt_date = findViewById(R.id.txt_confirmBooking_date);
+        txt_time = findViewById(R.id.txt_confirmBooking_time);
+        txt_instructor = findViewById(R.id.txt_confirmBooking_Instructor);
 
-        getBookingInfo();   }
 
-    private void getBookingInfo(){
+        getBookingInfo();
+        fillFields();
+    }
+
+    private void getBookingInfo() {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             date = extras.getString("date");
@@ -43,7 +52,7 @@ public class UserBooking3 extends AppCompatActivity {
             dbRef.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (snapshot.hasChild(userID)){
+                    if (snapshot.hasChild(userID)) {
                         userName = snapshot.child(userID).child("name").getValue(String.class);
                         userLicence = snapshot.child(userID).child("licence").getValue(String.class);
                         Toast.makeText(UserBooking3.this, "Customer: " + userName +
@@ -62,19 +71,25 @@ public class UserBooking3 extends AppCompatActivity {
 
     }
 
+    public void fillFields() {
+        txt_date.setText(date);
+        txt_time.setText(time);
+
+    }
+
     public void confirmBooking(View view) {
         String id = dbRef.push().getKey();
-        Booking b = new Booking(userLicence, date, time);
+        Booking b = new Booking(userID, "null", date, time, "pending");
         dbRef.child("bookings").child(id).setValue(b);
+        Intent intent = new Intent (this, UserHome.class);
+        startActivity(intent);
         //Intent intent = new Intent(Intent.ACTION_INSERT);
-       // intent.setData(CalendarContract.Events.CONTENT_URI);
-       // intent.putExtra(CalendarContract.Events.TITLE, "Driving Test");
-       // intent.putExtra(CalendarContract.Events.EVENT_LOCATION, "Location of Test");
-     //   intent.putExtra(CalendarContract.Events.DESCRIPTION, "Driving Test at "+ time);
+        // intent.setData(CalendarContract.Events.CONTENT_URI);
+        // intent.putExtra(CalendarContract.Events.TITLE, "Driving Test");
+        // intent.putExtra(CalendarContract.Events.EVENT_LOCATION, "Location of Test");
+        //   intent.putExtra(CalendarContract.Events.DESCRIPTION, "Driving Test at "+ time);
 
-       // startActivity(intent);
-
-
+        // startActivity(intent);
 
 
     }

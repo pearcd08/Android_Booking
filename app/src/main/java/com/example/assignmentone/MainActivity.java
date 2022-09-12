@@ -45,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
 
         if (loginEmail.equals("admin") && loginPassword.equals("admin")) {
             //open admin/employee page
+            Intent adminIntent = new Intent(this, AdminHome.class);
+            startActivity(adminIntent);
+
 
         } else {
 
