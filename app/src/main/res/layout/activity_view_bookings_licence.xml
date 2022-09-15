@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="#004584"
+    tools:context=".ViewBookingsLicence">
+
+    <TextView
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="Select Licence"
+        android:textAlignment="center"
+        android:textSize="36dp"
+        android:textColor="#FFDF35"
+        android:fontFamily="@font/bungee"
+
+        />
+
+    <Spinner
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:background="@color/white"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_bookings_by_licence"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+</LinearLayout>

@@ -5,15 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.assignmentone.db.Booking;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CalendarView;
-import android.widget.DatePicker;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -25,22 +23,20 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.List;
 
 public class UserBooking1 extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     private String userID;
     private String date;
     private DatePickerDialog datePickerDialog;
-
-    private Calendar calendar;
-
-
     private Button btnNext;
-
     private FirebaseDatabase fbDB;
     private DatabaseReference dbRef;
+
+    private RecyclerView rvTime;
 
 
     @Override
@@ -50,6 +46,9 @@ public class UserBooking1 extends AppCompatActivity implements DatePickerDialog.
 
         fbDB = FirebaseDatabase.getInstance();
         dbRef = fbDB.getReference();
+        rvTime = findViewById(R.id.rv_time);
+
+
 
 
         btnNext = findViewById(R.id.btn_confirmDate);
@@ -62,16 +61,12 @@ public class UserBooking1 extends AppCompatActivity implements DatePickerDialog.
         }
         showCalendar();
 
-
-
-
-
     }
+
+
 
     private void showCalendar() {
         Calendar today = Calendar.getInstance();
-
-
         datePickerDialog = DatePickerDialog.newInstance(UserBooking1.this,
                 today.get(Calendar.YEAR),
                 today.get(Calendar.MONTH),
@@ -93,13 +88,16 @@ public class UserBooking1 extends AppCompatActivity implements DatePickerDialog.
         Calendar[] weekendDays = weekends.toArray(new Calendar[weekends.size()]);
         datePickerDialog.setDisabledDays(weekendDays);
 
+        //Remove Booked Dates;
+
     }
 
 
-    private void checkDate() {
+    private void checkBooking() {
         dbRef.child("bookings").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<String> bookedDates = new ArrayList<>();
                 for (DataSnapshot bookingData : snapshot.getChildren()) {
                     String dbUserID = bookingData.child("userID").getValue(String.class);
                     String dbDate = bookingData.child("date").getValue(String.class);
@@ -107,17 +105,42 @@ public class UserBooking1 extends AppCompatActivity implements DatePickerDialog.
                     if (dbUserID.equals(userID) && dbDate.equals(date)) {
 
                         //get date, put in array, showCalender(array) to disable dates that are already booked
-
                         btnNext.setEnabled(false);
                         Toast.makeText(UserBooking1.this, "You already have a booking on " + date,
                                 Toast.LENGTH_SHORT).show();
 
-                    } else {
+                    }
+
+                    else {
                         btnNext.setEnabled(true);
                     }
 
 
                 }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void checkTimes() {
+
+        dbRef.child("bookings").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //Create a new Array for the timeslots
+                String[] data = {"09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"};
+
+                //loop bookings and minus 1 for each booking at that time from available bookings
+
+                TimeBooking_Adapter adapter = new TimeBooking_Adapter(data);
+                rvTime.setLayoutManager(new LinearLayoutManager(UserBooking1.this));
+                rvTime.setAdapter(adapter);
 
             }
 
@@ -139,8 +162,9 @@ public class UserBooking1 extends AppCompatActivity implements DatePickerDialog.
 
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-        date = (monthOfYear + 1) + "/" + dayOfMonth + "/" + year;
+        date = dayOfMonth +"/" +  (monthOfYear + 1) + "/" + year;
+        checkBooking();
+        checkTimes();
 
-        checkDate();
     }
 }

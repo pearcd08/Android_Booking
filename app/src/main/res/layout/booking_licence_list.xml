@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="175dp"
+    app:cardBackgroundColor="#FFDF35"
+    app:cardCornerRadius="40dp">
+
+    <TextView
+        android:id="@+id/tv_viewBooking_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Name: First + Last"
+        android:textAlignment="center"
+        android:textSize="24dp"
+        />
+    <TextView
+        android:id="@+id/tv_viewBooking_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:hint="Date: 13/03/22"
+        android:textAlignment="center"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/tv_viewBooking_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:hint="Time: 09:00"
+        android:textAlignment="center"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/tv_viewBooking_instructor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="130dp"
+        android:hint="Instructor: 09:00"
+        android:textAlignment="center"
+        android:textSize="24dp" />
+
+
+
+
+
+
+</androidx.cardview.widget.CardView>

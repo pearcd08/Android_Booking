@@ -48,8 +48,6 @@ public class UserBooking2 extends AppCompatActivity {
 
         displayDate();
         getInstructors();
-        checkTimes();
-
 
     }
 
@@ -91,50 +89,7 @@ public class UserBooking2 extends AppCompatActivity {
 
     }
 
-    private void checkTimes() {
 
-        dbRef.child("bookings").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //Create a new Array for the timeslots
-                String[] data = {"09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"};
-                for (DataSnapshot bookingData : snapshot.getChildren()) {
-                    String dbDate = bookingData.child("date").getValue(String.class);
-                    String dbInstructorID = bookingData.child("instructorID").getValue(String.class);
-                    if (dbDate.equals(date)) {
-                        int count = 0;
-                        for(int i = 0; i < instructorList.size(); i++){
-                            String listInstructor = instructorList.get(i);
-                            if(dbInstructorID.equals(listInstructor)){
-                                count++;
-                                if(count == instructorList.size()){
-                                    String dbTime = bookingData.child("time").getValue(String.class);
-                                    List<String> list = new ArrayList<String>(Arrays.asList(data));
-                                    list.remove(dbTime);
-                                    data = list.toArray(new String[0]);
-                                }
-
-                            }
-                            else{
-                                selectedInstructor = (listInstructor);
-
-                            }
-                        }
-
-                    }
-                }
-                TimeBooking_Adapter adapter = new TimeBooking_Adapter(data);
-                rvTime.setLayoutManager(new LinearLayoutManager(UserBooking2.this));
-                rvTime.setAdapter(adapter);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
 
 
     public void openBookingThree(View view) {

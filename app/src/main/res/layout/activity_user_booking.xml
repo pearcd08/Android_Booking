@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
     android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="#004584"
     tools:context=".UserBooking1">
 
     <TextView
@@ -17,6 +18,11 @@
 
         />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
 
 
 

@@ -20,6 +20,8 @@ public class AdminHome extends AppCompatActivity {
     }
 
     public void openViewBookings(View view) {
+        Intent intent = new Intent(this, ViewBookingsLicence.class);
+        startActivity(intent);
     }
 
     public void logoutAdmin(View view) {

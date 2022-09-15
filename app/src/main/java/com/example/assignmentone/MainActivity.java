@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void registerUser(View view) {
 
-        Intent intent = new Intent(this, RegisterUser.class);
+        Intent intent = new Intent(this, RegisterUser1.class);
         startActivity(intent);
 
     }

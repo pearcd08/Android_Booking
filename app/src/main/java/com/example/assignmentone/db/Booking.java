@@ -1,14 +1,14 @@
 package com.example.assignmentone.db;
 
-import androidx.room.Entity;
 
-@Entity
 public class Booking {
     private String userID;
     private String instructorID;
     private String date;
     private String time;
     private String status;
+
+    public Booking() {}  // Needed for Firebase
 
     public Booking(String userID, String instructorID, String date, String time, String status) {
         this.userID = userID;

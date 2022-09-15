@@ -5,37 +5,71 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+    android:gravity="center_horizontal"
+    android:background="#004584"
     tools:context=".UserHome">
 
     <TextView
         android:id="@+id/txt_welcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="User goes here"
-        android:textSize="32dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="Welcome FirstName"
+        android:textAlignment="center"
+        android:textSize="36dp"
+        android:textColor="#FFDF35"
+        android:fontFamily="@font/bungee"
         />
 
+
+
     <Button
+        android:layout_marginTop="25dp"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:text="Book a Test"
+        android:textSize="24dp"
+        android:gravity="center"
+        android:fontFamily="@font/bungee"
+        android:textColor="@color/black"
+        android:backgroundTint="#FFDF35"
         android:onClick="openBookTest"
         />
     <Button
+        android:layout_marginTop="25dp"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:text="Road Code Game"
+        android:layout_height="60dp"
+        android:text="Play Game"
+        android:textSize="24dp"
+        android:gravity="center"
+        android:fontFamily="@font/bungee"
+        android:textColor="@color/black"
+        android:backgroundTint="#FFDF35"
         android:onClick="openRCGame"
         />
 
     <Button
+        android:layout_marginTop="25dp"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:text="Logout"
+        android:textSize="24dp"
+        android:gravity="center"
+        android:fontFamily="@font/bungee"
+        android:textColor="@color/black"
+        android:backgroundTint="#FFDF35"
         android:onClick="logoutUser"
         />
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="25dp"
+        android:layout_width="250dp"
+        android:layout_height="200dp"
+        />
+
+
 
 
 </LinearLayout>

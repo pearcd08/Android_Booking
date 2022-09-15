@@ -4,95 +4,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".RegisterUser">
+    android:background="#004584"
+    tools:context=".RegisterUser1">
 
     <TextView
+        android:layout_marginTop="150dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Register"
+        android:layout_height="100dp"
+        android:text="Enter Details"
         android:textAlignment="center"
+        android:textSize="36dp"
+        android:textColor="#FFDF35"
+        android:fontFamily="@font/bungee"
         />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="First Name"
+
+    <EditText
+        android:id="@+id/et_email"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:textAlignment="gravity"
+        android:textSize="18dp"
+        android:hint=" Enter Email"
+        android:background="@color/white"
+        android:layout_marginBottom="25dp"
         />
 
     <EditText
-        android:id="@+id/txt_firstName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="First Name"
-        />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Last Name"
-        />
-
-    <EditText
-        android:id="@+id/txt_lastName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="LastName"
-        />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Licence No"
-        />
-
-    <EditText
-        android:id="@+id/txt_licence"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="ABC23"
-        />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Email Address"
-        />
-
-    <EditText
-        android:id="@+id/txt_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="example@outlook.com"
-        />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Password"
-        />
-
-    <EditText
-        android:id="@+id/txt_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Password"
+        android:id="@+id/et_password"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:textAlignment="gravity"
+        android:textSize="18dp"
+        android:hint=" Enter Password"
+        android:background="@color/white"
         android:inputType="textPassword"
+        android:layout_marginBottom="25dp"
         />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Confirm Password"
-        />
+
 
     <EditText
-        android:id="@+id/txt_confirmPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Confirm Password"
+        android:id="@+id/et_confirmPassword"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:textAlignment="gravity"
+        android:textSize="18dp"
+        android:hint=" Confirm Password"
+        android:background="@color/white"
         android:inputType="textPassword"
+        android:layout_marginBottom="50dp"
         />
 
     <LinearLayout
@@ -103,16 +66,29 @@
         >
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
             android:text="Back"
+            android:textSize="24dp"
+            android:gravity="center"
+            android:fontFamily="@font/bungee"
+            android:textColor="@color/black"
+            android:backgroundTint="#FFDF35"
+            android:layout_marginRight="25dp"
             android:onClick="goBack"
+
             />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Confirm"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:text="NEXT"
+            android:textSize="24dp"
+            android:gravity="center"
+            android:fontFamily="@font/bungee"
+            android:textColor="@color/black"
+            android:backgroundTint="#FFDF35"
+            android:layout_marginLeft="25dp"
             android:onClick="saveUser"
             />
 
