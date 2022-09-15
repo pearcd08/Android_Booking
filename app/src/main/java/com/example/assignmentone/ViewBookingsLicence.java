@@ -9,15 +9,24 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.assignmentone.db.Booking;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class ViewBookingsLicence extends AppCompatActivity {
     LinearLayoutManager linearLayoutManager;
@@ -28,6 +37,12 @@ public class ViewBookingsLicence extends AppCompatActivity {
     DatabaseReference databaseReference;
     FirebaseRecyclerAdapter firebaseRecyclerAdapter;
     FirebaseRecyclerOptions firebaseRecyclerOptions;
+
+    ArrayList<String> spinnerList;
+    ArrayAdapter<String> arrayAdapter;
+
+
+
 
 
     @Override
@@ -45,21 +60,50 @@ public class ViewBookingsLicence extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
 
-        showData();
+
+        spinner = (Spinner) findViewById(R.id.spin_licence);
+
+
+        spinnerList = new ArrayList<>();
+        arrayAdapter = new ArrayAdapter<String>(ViewBookingsLicence.this,
+                android.R.layout.simple_spinner_dropdown_item, spinnerList);
+
+
+        spinner.setAdapter(arrayAdapter);
+
+
+        loadSpinner();
+
+
+
+
 
 
     }
 
-    private void showData() {
+    private void loadSpinner() {
+        databaseReference.child("users").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot userDB : snapshot.getChildren()){
+                    String licence = userDB.child("licence").getValue(String.class);
+                    spinnerList.add(licence);
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
 
+    }
+
+    private void showBookings(String licence) {
         Query query = databaseReference
                 .child("bookings")
-                .orderByChild("date")
-                .equalTo("9/18/2022");
-
-
+                .orderByChild("licence")
+                .equalTo(licence);
 
         firebaseRecyclerOptions =
                 new FirebaseRecyclerOptions.Builder<Booking>()
@@ -107,6 +151,7 @@ public class ViewBookingsLicence extends AppCompatActivity {
 
 
     }
+
 
 
 }

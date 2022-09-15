@@ -45,7 +45,7 @@ public class RegisterUser1 extends AppCompatActivity {
 
     }
 
-    public void saveUser(View view) {
+    public void openUserReg2(View view) {
 
 
 
