@@ -69,10 +69,25 @@ public class ViewBookingsLicence extends AppCompatActivity {
                 android.R.layout.simple_spinner_dropdown_item, spinnerList);
 
 
-        spinner.setAdapter(arrayAdapter);
 
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String selection = spinner.getSelectedItem().toString();
+                Toast.makeText(ViewBookingsLicence.this, selection+"Selected", Toast.LENGTH_SHORT).show();
+                showBookings(selection);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         loadSpinner();
+        spinner.setAdapter(arrayAdapter);
+        arrayAdapter.notifyDataSetChanged();
 
 
 
@@ -129,7 +144,7 @@ public class ViewBookingsLicence extends AppCompatActivity {
                     @Override
                     protected void onBindViewHolder(@NonNull ViewBooking_Holder holder, int position, @NonNull Booking model) {
                         holder.setDetails(getApplicationContext(),
-                                model.getUserID(),
+                                model.getLicence(),
                                 model.getDate(),
                                 model.getTime(),
                                 model.getInstructorID());
@@ -151,7 +166,6 @@ public class ViewBookingsLicence extends AppCompatActivity {
 
 
     }
-
 
 
 }

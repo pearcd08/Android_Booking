@@ -48,7 +48,7 @@ public class RegisterInstructor extends AppCompatActivity {
         String fName = txt_fName.getText().toString().trim();
         String lName = txt_lName.getText().toString().trim();
         String name = fName + " " + lName;
-        String phone = txt_phone.getText().toString().trim();
+        String phone = txt_phone.getText().toString();
 
 
         if (checkValues(fName, lName, phone) == true) {

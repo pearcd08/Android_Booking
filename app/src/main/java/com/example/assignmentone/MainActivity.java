@@ -38,24 +38,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loginUser(View view) {
-
-
         String loginEmail = txtEmail.getText().toString();
         String loginPassword = txtPassword.getText().toString();
 
+        //open admin menu, might change to user type (user/admin)
         if (loginEmail.equals("admin") && loginPassword.equals("admin")) {
             //open admin/employee page
             Intent adminIntent = new Intent(this, AdminHome.class);
             startActivity(adminIntent);
 
-
         } else {
-
-            dbRef.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+            dbRef.child("users").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for (DataSnapshot userData : snapshot.getChildren()) {
                         String userID = userData.getKey();
+                        String licence = userData.child("licence").getValue(String.class);
                         String dbEmail = userData.child("email").getValue(String.class);
                         if (dbEmail.equals(loginEmail)) {
                             final String dbPassword = userData.child("password").getValue(String.class);
@@ -65,14 +63,20 @@ public class MainActivity extends AppCompatActivity {
                                 Intent i = new Intent(MainActivity.this, UserHome.class);
 
                                 i.putExtra("userID", userID);
+                                i.putExtra("licence", licence);
                                 startActivity(i);
 
-                            }
-                            else{
+                            } else {
                                 Toast.makeText(MainActivity.this, "Incorrect Password",
                                         Toast.LENGTH_SHORT).show();
-                                txtEmail.requestFocus();
+                                txtPassword.requestFocus();
                             }
+
+                        }
+                        else{
+                            Toast.makeText(MainActivity.this, "Invaid Email",
+                                    Toast.LENGTH_SHORT).show();
+                            txtEmail.requestFocus();
 
                         }
                     }
@@ -81,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(MainActivity.this, "Error connecting to database",
+                            Toast.LENGTH_SHORT).show();
 
                 }
             });

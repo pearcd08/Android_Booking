@@ -11,11 +11,13 @@ import java.util.ArrayList;
 
 public class TimeBooking_Adapter extends RecyclerView.Adapter<TimeBooking_Holder> {
     String[] data;
+    int[] timeSlots;
 
 
 
-    public TimeBooking_Adapter(String[] data) {
+    public TimeBooking_Adapter(String[] data, int[] timeSlotBookings) {
         this.data = data;
+        this.timeSlots = timeSlotBookings;
 
     }
 
@@ -35,6 +37,11 @@ public class TimeBooking_Adapter extends RecyclerView.Adapter<TimeBooking_Holder
     @Override
     public void onBindViewHolder(@NonNull TimeBooking_Holder holder, int position) {
         holder.tvTime.setText(data[position]);
+        //holder.tvInstructor.setText(timeSlots[position]);
+
+
+
+
 
 
     }

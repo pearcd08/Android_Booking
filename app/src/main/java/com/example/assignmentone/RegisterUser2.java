@@ -47,34 +47,38 @@ public class RegisterUser2 extends AppCompatActivity {
     }
 
 
-    public void saveUser(View view) {
+    public void userReg2Save(View view) {
         String fName = et_fName.getText().toString().trim();
         String lName = et_lName.getText().toString().trim();
-        String name = fName + " " + lName;
-        String licence = et_licence.getText().toString().trim();
+        String licence = et_licence.getText().toString().toUpperCase().trim();
 
         dbRef.child("users").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.hasChild(licence)) {
-                    Toast.makeText(RegisterUser2.this, "That licence is already registered",
-                            Toast.LENGTH_SHORT).show();
-                    et_licence.requestFocus();
-
-                } else {
-                    String id = dbRef.push().getKey();
-                    User u = new User(name, licence, email, password);
-                    dbRef.child("users").child(id).setValue(u);
-                    Toast.makeText(RegisterUser2.this, name + " has been registered ",
-                            Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(RegisterUser2.this, MainActivity.class);
-                    startActivity(intent);
+                //check if user table exists
+                if(snapshot.exists()){
+                    //see if a user already has that licence no.
+                    if (snapshot.hasChild(licence)) {
+                        Toast.makeText(RegisterUser2.this, "That licence is already registered",
+                                Toast.LENGTH_SHORT).show();
+                        et_licence.requestFocus();
+                    }
+                    //no user with that licence, save the user
+                    else{
+                        saveUser(fName, lName, licence);
+                    }
+                }
+                //user table doesnt exist, create first entry
+                 else {
+                    saveUser(fName ,lName, licence);
 
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(RegisterUser2.this, "Error connecting to database",
+                        Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -84,17 +88,57 @@ public class RegisterUser2 extends AppCompatActivity {
         Intent i = new Intent(this, RegisterUser1.class);
         startActivity(i);
     }
+    //save user to firebase database
+    private void saveUser(String fName, String lName, String licence){
 
-    private boolean checkValues() {
-        if (!et_fName.getText().toString().isEmpty() ||
-                !et_lName.getText().toString().isEmpty() ||
-                !et_licence.getText().toString().isEmpty()) {
+        if(checkValues(fName, lName, licence) == true){
+            if(checkLicence(licence)){
+                String name = fName + " " + lName;
+                String id = dbRef.push().getKey();
+                User u = new User(name, licence, email, password);
+                dbRef.child("users").child(id).setValue(u);
+                Toast.makeText(RegisterUser2.this, name + " has been registered ",
+                        Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(RegisterUser2.this, MainActivity.class);
+                startActivity(intent);
+            }
+            else{
+                Toast.makeText(RegisterUser2.this, "Licence must be 2 letters followed by 6 numbers",
+                        Toast.LENGTH_SHORT).show();
+            }
+
+        }
+        else{
+            Toast.makeText(RegisterUser2.this, "fill in all fields",
+                    Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    private boolean checkValues(String fName, String lName, String licence) {
+        if (et_fName.getText().toString().isEmpty() ||
+                et_lName.getText().toString().isEmpty() ||
+                et_licence.getText().toString().isEmpty()) {
+            return false;
+        }
+        else{
+            return true;
+
+        }
+
+
+    }
+
+    public static boolean checkLicence(String licence) {
+        String licencePattern = "^[a-zA-Z]{2}[0-9]{6}$";
+        if(licence.matches(licencePattern)){
             return true;
         }
         return false;
 
-
     }
+
+
 
 
 }

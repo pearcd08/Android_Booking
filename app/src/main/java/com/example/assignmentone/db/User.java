@@ -13,6 +13,9 @@ public class User{
     private String email;
     private String password;
 
+
+    public User() {}  // Needed for Firebase
+
     public User(String name, String licence, String email, String password) {
         this.name = name;
         this.licence = licence;

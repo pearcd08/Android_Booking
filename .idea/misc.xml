@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/drawable/ic_calender_foreground.xml" value="0.147" />
         <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/layout/activity_admin_menu.xml" value="0.25" />
         <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/layout/activity_confirm_booking.xml" value="0.25" />
         <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/layout/activity_main.xml" value="0.33" />
@@ -15,6 +16,7 @@
         <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/layout/activity_view_bookings_licence.xml" value="0.2304403591278324" />
         <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/layout/booking_licence_list.xml" value="0.22958529286019666" />
         <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/layout/time_layout.xml" value="0.22447916666666667" />
+        <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.147" />
       </map>
     </option>
   </component>

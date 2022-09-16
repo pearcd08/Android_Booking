@@ -1,24 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="250dp"
-    android:layout_height="50dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="150dp"
+    android:layout_height="75dp"
     android:layout_gravity="center"
+    android:layout_margin="10dp"
+    android:background="@color/white"
     android:orientation="vertical"
-    app:cardCornerRadius="25dp"
-    android:layout_margin="15dp">
+    app:cardCornerRadius="25dp">
 
     <TextView
         android:id="@+id/tv_time"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
-        android:text="09:00"
-        android:textSize="18dp"
         android:gravity="center"
+        android:text="Time: 09:00"
         android:textColor="@color/black"
-        />
+        android:textSize="18dp" />
 
+    <TextView
+        android:id="@+id/tv_bookingsAvailable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:gravity="center_horizontal"
+        android:text="Instructors = 0"
+        android:textSize="18dp" />
 
 
 </androidx.cardview.widget.CardView>

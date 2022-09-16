@@ -89,7 +89,7 @@
             android:textColor="@color/black"
             android:backgroundTint="#FFDF35"
             android:layout_marginLeft="25dp"
-            android:onClick="openUserReg2"
+            android:onClick="userReg1Next"
             />
 
 

@@ -79,8 +79,8 @@ public class UserBooking3 extends AppCompatActivity {
 
     public void confirmBooking(View view) {
         String id = dbRef.push().getKey();
-        Booking b = new Booking(userID, "null", date, time, "pending");
-        dbRef.child("bookings").child(id).setValue(b);
+        //Booking b = new Booking(userID, "null", date, time, "pending");
+        //dbRef.child("bookings").child(id).setValue(b);
         Intent intent = new Intent (this, UserHome.class);
         startActivity(intent);
         //Intent intent = new Intent(Intent.ACTION_INSERT);

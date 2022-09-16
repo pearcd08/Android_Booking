@@ -2,28 +2,26 @@ package com.example.assignmentone.db;
 
 
 public class Booking {
-    private String userID;
+    private String licence;
     private String instructorID;
     private String date;
     private String time;
-    private String status;
 
     public Booking() {}  // Needed for Firebase
 
-    public Booking(String userID, String instructorID, String date, String time, String status) {
-        this.userID = userID;
+    public Booking(String licence, String instructorID, String date, String time) {
+        this.licence = licence;
         this.instructorID = instructorID;
         this.date = date;
         this.time = time;
-        this.status = status;
     }
 
-    public String getUserID() {
-        return userID;
+    public String getLicence() {
+        return licence;
     }
 
-    public void setUserID(String userID) {
-        this.userID = userID;
+    public void setLicence(String licence) {
+        this.licence = licence;
     }
 
     public String getInstructorID() {
@@ -50,22 +48,13 @@ public class Booking {
         this.time = time;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     @Override
     public String toString() {
         return "Booking{" +
-                "userID='" + userID + '\'' +
+                "licence='" + licence + '\'' +
                 ", instructorID='" + instructorID + '\'' +
                 ", date='" + date + '\'' +
                 ", time='" + time + '\'' +
-                ", status='" + status + '\'' +
                 '}';
     }
 }

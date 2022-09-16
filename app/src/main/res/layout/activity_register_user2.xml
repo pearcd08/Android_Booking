@@ -86,7 +86,7 @@
             android:textColor="@color/black"
             android:backgroundTint="#FFDF35"
             android:layout_marginLeft="25dp"
-            android:onClick="saveUser"
+            android:onClick="userReg2Save"
             />
 
 
