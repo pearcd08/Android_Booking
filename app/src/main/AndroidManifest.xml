@@ -29,9 +29,6 @@
             android:name=".AdminHome"
             android:exported="false" />
         <activity
-            android:name=".UserBooking3"
-            android:exported="false" />
-        <activity
             android:name=".UserBooking2"
             android:exported="false" />
         <activity

@@ -24,7 +24,8 @@ public class TimeBooking_Holder extends RecyclerView.ViewHolder {
     public TimeBooking_Holder(@NonNull View itemView) {
         super(itemView);
         tvTime = itemView.findViewById(R.id.tv_time);
-        tvInstructor = itemView.findViewById(R.id.tv_viewBooking_instructor);
+        tvInstructor = itemView.findViewById(R.id.tv_bookingsAvailable);
+        UserBooking1 uBooking = new UserBooking1();
         tvTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -35,7 +36,9 @@ public class TimeBooking_Holder extends RecyclerView.ViewHolder {
                 Toast.makeText(tvTime.getContext(), clickedTime + " Selected!",
                         Toast.LENGTH_SHORT).show();
                 tvTime.setBackgroundColor(Color.parseColor("#808080"));
-                UserBooking2.time = clickedTime;
+                UserBooking1.time = clickedTime;
+                uBooking.assignInstructor(uBooking.time);
+
 
 
 

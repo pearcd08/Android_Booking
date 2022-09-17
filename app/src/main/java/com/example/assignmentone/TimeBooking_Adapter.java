@@ -37,13 +37,7 @@ public class TimeBooking_Adapter extends RecyclerView.Adapter<TimeBooking_Holder
     @Override
     public void onBindViewHolder(@NonNull TimeBooking_Holder holder, int position) {
         holder.tvTime.setText(data[position]);
-        //holder.tvInstructor.setText(timeSlots[position]);
-
-
-
-
-
-
+        holder.tvInstructor.setText("Bookings Available: "+String.valueOf(timeSlots[position]));
     }
 
     @Override
