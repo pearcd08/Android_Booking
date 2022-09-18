@@ -48,22 +48,28 @@ public class MainActivity extends AppCompatActivity {
             startActivity(adminIntent);
 
         } else {
-            dbRef.child("users").addValueEventListener(new ValueEventListener() {
+            dbRef.child("users").addListenerForSingleValueEvent(new ValueEventListener(){
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    int emailCount = 0;
+
                     for (DataSnapshot userData : snapshot.getChildren()) {
                         String userID = userData.getKey();
-                        String licence = userData.child("licence").getValue(String.class);
+
                         String dbEmail = userData.child("email").getValue(String.class);
                         if (dbEmail.equals(loginEmail)) {
+                            emailCount ++;
                             final String dbPassword = userData.child("password").getValue(String.class);
+                            String userLicence = userData.child("licence").getValue(String.class);
+                            String userName = userData.child("name").getValue(String.class);
 
                             if (dbPassword.equals(loginPassword)) {
 
                                 Intent i = new Intent(MainActivity.this, UserHome.class);
 
                                 i.putExtra("userID", userID);
-                                i.putExtra("licence", licence);
+                                i.putExtra("userLicence", userLicence);
+                                i.putExtra("userName", userName);
                                 startActivity(i);
 
                             } else {
@@ -73,12 +79,12 @@ public class MainActivity extends AppCompatActivity {
                             }
 
                         }
-                        else{
-                            Toast.makeText(MainActivity.this, "Invaid Email",
-                                    Toast.LENGTH_SHORT).show();
-                            txtEmail.requestFocus();
 
-                        }
+                    }
+                    if(emailCount == 0){
+                        Toast.makeText(MainActivity.this, "Email Doesn't Exist",
+                                Toast.LENGTH_SHORT).show();
+
                     }
                 }
 

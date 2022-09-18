@@ -62,8 +62,9 @@ public class RegisterInstructor extends AppCompatActivity {
                         txt_phone.requestFocus();
 
                     } else {
+
                         String id = dbRef.push().getKey();
-                        Instructor i = new Instructor(name, Integer.parseInt(phone));
+                        Instructor i = new Instructor(id, name, Integer.parseInt(phone));
                         dbRef.child("instructors").child(id).setValue(i);
                         Toast.makeText(RegisterInstructor.this, name + " has been registered ",
                                 Toast.LENGTH_SHORT).show();

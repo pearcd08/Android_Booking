@@ -67,7 +67,7 @@
             android:backgroundTint="#FFDF35"
             android:fontFamily="@font/bungee"
             android:gravity="center"
-            android:onClick="openBookingTwo"
+            android:onClick="openConfirmBooking"
             android:text="NEXT"
             android:textColor="@color/black"
             android:textSize="24dp" />

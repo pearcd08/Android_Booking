@@ -13,35 +13,65 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
+        android:layout_marginBottom="30dp"
         android:fontFamily="@font/bungee"
-        android:text="Select Licence"
+        android:text="Enter Licence"
         android:textAlignment="center"
         android:textColor="#FFDF35"
-        android:textSize="36dp"
-        android:layout_marginBottom="30dp"/>
+        android:textSize="36dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
 
 
-    <Spinner
-        android:id="@+id/spin_licence"
-        android:layout_width="300dp"
-        android:layout_height="50dp"/>
+        <EditText
+            android:id="@+id/et_viewBooking_licence"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:hint="  Enter Licence"
+            android:maxLength="8"
+            android:textAlignment="center"
+            android:textSize="18dp" />
 
 
+        <Button
+            android:id="@+id/btn_viewBookings_search"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:backgroundTint="#FFDF35"
+            android:fontFamily="@font/bungee"
+            android:gravity="center"
+            android:onClick="searchBookingsByLicence"
+            android:text="GO"
+            android:textColor="@color/black"
+            android:textSize="12dp"
 
-
-
-
-
-
-
-
-
+            />
+    </LinearLayout>
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_bookings_by_licence"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="30dp" />
+
+    <Button
+
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="25dp"
+        android:backgroundTint="#FFDF35"
+        android:fontFamily="@font/bungee"
+        android:gravity="center"
+        android:onClick="viewBookingsLicenceBack"
+        android:text="Back"
+        android:textColor="@color/black"
+        android:textSize="24dp" />
 
 </LinearLayout>

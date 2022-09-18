@@ -6,14 +6,19 @@ public class Booking {
     private String instructorID;
     private String date;
     private String time;
+    private String userName;
+    private String instructorName;
 
-    public Booking() {}  // Needed for Firebase
+    public Booking() {
+    }  // Needed for Firebase
 
-    public Booking(String licence, String instructorID, String date, String time) {
+    public Booking(String licence, String instructorID, String date, String time, String userName, String instructorName) {
         this.licence = licence;
         this.instructorID = instructorID;
         this.date = date;
         this.time = time;
+        this.userName = userName;
+        this.instructorName = instructorName;
     }
 
     public String getLicence() {
@@ -48,6 +53,22 @@ public class Booking {
         this.time = time;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getInstructorName() {
+        return instructorName;
+    }
+
+    public void setInstructorName(String instructorName) {
+        this.instructorName = instructorName;
+    }
+
     @Override
     public String toString() {
         return "Booking{" +
@@ -55,6 +76,8 @@ public class Booking {
                 ", instructorID='" + instructorID + '\'' +
                 ", date='" + date + '\'' +
                 ", time='" + time + '\'' +
+                ", userName='" + userName + '\'' +
+                ", instructorName='" + instructorName + '\'' +
                 '}';
     }
 }

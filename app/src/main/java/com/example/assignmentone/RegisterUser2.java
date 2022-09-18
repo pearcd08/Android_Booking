@@ -52,25 +52,32 @@ public class RegisterUser2 extends AppCompatActivity {
         String lName = et_lName.getText().toString().trim();
         String licence = et_licence.getText().toString().toUpperCase().trim();
 
-        dbRef.child("users").addValueEventListener(new ValueEventListener() {
+        dbRef.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //check if user table exists
-                if(snapshot.exists()){
+                if (snapshot.exists()) {
                     //see if a user already has that licence no.
-                    if (snapshot.hasChild(licence)) {
+                    int licenceCount = 0;
+                    for (DataSnapshot uDB : snapshot.getChildren()) {
+                        String dbLicence = uDB.child("licence").getValue(String.class);
+                        if (dbLicence.equals(licence)) {
+                            licenceCount++;
+                            Toast.makeText(RegisterUser2.this, "Licence exists", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    if (licenceCount == 0) {
+                        saveUser(fName, lName, licence);
+
+                    } else {
                         Toast.makeText(RegisterUser2.this, "That licence is already registered",
                                 Toast.LENGTH_SHORT).show();
                         et_licence.requestFocus();
                     }
-                    //no user with that licence, save the user
-                    else{
-                        saveUser(fName, lName, licence);
-                    }
                 }
                 //user table doesnt exist, create first entry
-                 else {
-                    saveUser(fName ,lName, licence);
+                else {
+                    saveUser(fName, lName, licence);
 
                 }
             }
@@ -88,11 +95,12 @@ public class RegisterUser2 extends AppCompatActivity {
         Intent i = new Intent(this, RegisterUser1.class);
         startActivity(i);
     }
-    //save user to firebase database
-    private void saveUser(String fName, String lName, String licence){
 
-        if(checkValues(fName, lName, licence) == true){
-            if(checkLicence(licence)){
+    //save user to firebase database
+    private void saveUser(String fName, String lName, String licence) {
+
+        if (checkValues2(fName, lName, licence) == true) {
+            if (checkLicence(licence)) {
                 String name = fName + " " + lName;
                 String id = dbRef.push().getKey();
                 User u = new User(name, licence, email, password);
@@ -101,27 +109,24 @@ public class RegisterUser2 extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(RegisterUser2.this, MainActivity.class);
                 startActivity(intent);
-            }
-            else{
+            } else {
                 Toast.makeText(RegisterUser2.this, "Licence must be 2 letters followed by 6 numbers",
                         Toast.LENGTH_SHORT).show();
             }
 
-        }
-        else{
+        } else {
             Toast.makeText(RegisterUser2.this, "fill in all fields",
                     Toast.LENGTH_SHORT).show();
         }
 
     }
 
-    private boolean checkValues(String fName, String lName, String licence) {
+    private boolean checkValues2(String fName, String lName, String licence) {
         if (et_fName.getText().toString().isEmpty() ||
                 et_lName.getText().toString().isEmpty() ||
                 et_licence.getText().toString().isEmpty()) {
             return false;
-        }
-        else{
+        } else {
             return true;
 
         }
@@ -131,14 +136,12 @@ public class RegisterUser2 extends AppCompatActivity {
 
     public static boolean checkLicence(String licence) {
         String licencePattern = "^[a-zA-Z]{2}[0-9]{6}$";
-        if(licence.matches(licencePattern)){
+        if (licence.matches(licencePattern)) {
             return true;
         }
         return false;
 
     }
-
-
 
 
 }

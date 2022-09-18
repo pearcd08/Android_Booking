@@ -4,11 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/drawable/ic_calender_foreground.xml" value="0.147" />
-        <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/layout/activity_admin_menu.xml" value="0.25" />
+        <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/layout/activity_admin_menu.xml" value="0.1" />
         <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/layout/activity_confirm_booking.xml" value="0.25" />
         <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/layout/activity_register_instructor.xml" value="0.33489583333333334" />
-        <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/layout/activity_register_user.xml" value="0.2" />
+        <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/layout/activity_register_instructor.xml" value="0.25" />
+        <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/layout/activity_register_user.xml" value="0.1" />
         <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/layout/activity_register_user2.xml" value="0.2859375" />
         <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/layout/activity_user_booking.xml" value="0.1" />
         <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/layout/activity_user_booking2.xml" value="0.22447916666666667" />

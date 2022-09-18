@@ -4,40 +4,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:background="#004584"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".AdminHome">
 
     <TextView
-        android:id="@+id/txt_welcome"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Admin Menu"
-        android:textSize="32dp"
+        android:layout_marginTop="50dp"
         android:layout_marginBottom="100dp"
-        />
+        android:fontFamily="@font/bungee"
+        android:text="Admin Menu"
+        android:textAlignment="center"
+        android:textColor="#FFDF35"
+        android:textSize="36dp" />
 
     <Button
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="Register Instructor"
+        android:layout_marginTop="25dp"
+        android:backgroundTint="#FFDF35"
+        android:fontFamily="@font/bungee"
+        android:gravity="center"
         android:onClick="openRegisterInstructor"
-        />
-
+        android:text="New Instructor"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
 
 
     <Button
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="View Bookings"
+        android:layout_marginTop="25dp"
+        android:backgroundTint="#FFDF35"
+        android:fontFamily="@font/bungee"
+        android:gravity="center"
         android:onClick="openViewBookings"
-        />
+        android:text="View Bookings"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
 
     <Button
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="Logout"
+        android:layout_marginTop="25dp"
+        android:backgroundTint="#FFDF35"
+        android:fontFamily="@font/bungee"
+        android:gravity="center"
         android:onClick="logoutAdmin"
-        />
+        android:text="Logout"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
 
 </LinearLayout>

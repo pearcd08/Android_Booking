@@ -1,15 +1,27 @@
 package com.example.assignmentone.db;
 
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 @Entity
 public class Instructor {
+
+    String instructorID;
     private String name;
     private int phone;
 
-    public Instructor(String name, int phone) {
+    public Instructor(String instructorID, String name, int phone) {
+        this.instructorID = instructorID;
         this.name = name;
         this.phone = phone;
+    }
+
+    public String getInstructorID() {
+        return instructorID;
+    }
+
+    public void setInstructorID(String instructorID) {
+        this.instructorID = instructorID;
     }
 
     public String getName() {
@@ -31,7 +43,8 @@ public class Instructor {
     @Override
     public String toString() {
         return "Instructor{" +
-                "name='" + name + '\'' +
+                "instructorID='" + instructorID + '\'' +
+                ", name='" + name + '\'' +
                 ", phone=" + phone +
                 '}';
     }

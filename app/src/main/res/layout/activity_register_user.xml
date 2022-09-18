@@ -10,14 +10,15 @@
     tools:context=".RegisterUser1">
 
     <TextView
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="100dp"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:text="Enter Details"
         android:textAlignment="center"
         android:textSize="36dp"
         android:textColor="#FFDF35"
         android:fontFamily="@font/bungee"
+        android:layout_marginBottom="50dp"
         />
 
 
@@ -25,23 +26,24 @@
         android:id="@+id/et_email"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:textAlignment="gravity"
         android:textSize="18dp"
         android:hint=" Enter Email"
         android:background="@color/white"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="30dp"
+        android:inputType="text"
+        android:maxLines="1"
         />
 
     <EditText
         android:id="@+id/et_password"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:textAlignment="gravity"
         android:textSize="18dp"
         android:hint=" Enter Password"
         android:background="@color/white"
         android:inputType="textPassword"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="30dp"
+        android:maxLines="1"
         />
 
 
@@ -50,12 +52,12 @@
         android:id="@+id/et_confirmPassword"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:textAlignment="gravity"
         android:textSize="18dp"
         android:hint=" Confirm Password"
         android:background="@color/white"
         android:inputType="textPassword"
         android:layout_marginBottom="50dp"
+        android:maxLines="1"
         />
 
     <LinearLayout
@@ -80,6 +82,7 @@
             />
 
         <Button
+            android:id="@+id/btn_regUser_next"
             android:layout_width="120dp"
             android:layout_height="60dp"
             android:text="NEXT"

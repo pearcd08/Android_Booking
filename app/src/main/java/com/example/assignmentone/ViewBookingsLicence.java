@@ -5,12 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -27,12 +30,12 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class ViewBookingsLicence extends AppCompatActivity {
     LinearLayoutManager linearLayoutManager;
-    Spinner spinner;
-    RecyclerView recyclerView;
 
+    RecyclerView recyclerView;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     FirebaseRecyclerAdapter firebaseRecyclerAdapter;
@@ -41,8 +44,7 @@ public class ViewBookingsLicence extends AppCompatActivity {
     ArrayList<String> spinnerList;
     ArrayAdapter<String> arrayAdapter;
 
-
-
+    EditText et_licence;
 
 
     @Override
@@ -60,57 +62,8 @@ public class ViewBookingsLicence extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
 
-
-        spinner = (Spinner) findViewById(R.id.spin_licence);
-
-
-        spinnerList = new ArrayList<>();
-        arrayAdapter = new ArrayAdapter<String>(ViewBookingsLicence.this,
-                android.R.layout.simple_spinner_dropdown_item, spinnerList);
-
-
-
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String selection = spinner.getSelectedItem().toString();
-                Toast.makeText(ViewBookingsLicence.this, selection+"Selected", Toast.LENGTH_SHORT).show();
-                showBookings(selection);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-        loadSpinner();
-        spinner.setAdapter(arrayAdapter);
-        arrayAdapter.notifyDataSetChanged();
-
-
-
-
-
-
-    }
-
-    private void loadSpinner() {
-        databaseReference.child("users").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot userDB : snapshot.getChildren()){
-                    String licence = userDB.child("licence").getValue(String.class);
-                    spinnerList.add(licence);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        //spinner = (Spinner) findViewById(R.id.spin_licence);
+        et_licence = (EditText) findViewById(R.id.et_viewBooking_licence);
 
     }
 
@@ -130,24 +83,19 @@ public class ViewBookingsLicence extends AppCompatActivity {
                     @NonNull
                     @Override
                     public ViewBooking_Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        // Create a new instance of the ViewHolder, in this case we are using a custom
-                        // layout called R.layout.message for each item
                         View itemView = LayoutInflater.from(parent.getContext())
                                 .inflate(R.layout.booking_licence_list, parent, false);
-
                         ViewBooking_Holder viewBooking_holder = new ViewBooking_Holder(itemView);
-
-
                         return viewBooking_holder;
                     }
 
                     @Override
                     protected void onBindViewHolder(@NonNull ViewBooking_Holder holder, int position, @NonNull Booking model) {
                         holder.setDetails(getApplicationContext(),
-                                model.getLicence(),
+                                model.getUserName(),
                                 model.getDate(),
                                 model.getTime(),
-                                model.getInstructorID());
+                                model.getInstructorName());
                         // ...
                     }
                 };
@@ -167,5 +115,41 @@ public class ViewBookingsLicence extends AppCompatActivity {
 
     }
 
+    public void searchBookingsByLicence(View view) {
+        String licence = et_licence.getText().toString().trim().toUpperCase();
+        checkLicence(licence);
+        showBookings(licence);
+    }
 
-}
+    private void checkLicence(String licence) {
+
+        databaseReference.child("bookings").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int licenceCount = 0;
+                for (DataSnapshot bDB : snapshot.getChildren()) {
+                    String dbLicence = bDB.child("licence").getValue(String.class);
+                    if (dbLicence.equals(licence)) {
+                        licenceCount++;
+                    }
+                }
+                if(licenceCount == 0){
+                    Toast.makeText(ViewBookingsLicence.this,
+                            "That licence has no bookings",
+                            Toast.LENGTH_SHORT).show();}
+            }
+
+                @Override
+                public void onCancelled (@NonNull DatabaseError error){
+
+
+                }
+            });
+        }
+
+
+        public void viewBookingsLicenceBack (View view){
+            Intent intent = new Intent(this, AdminHome.class);
+            startActivity(intent);
+        }
+    }

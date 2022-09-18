@@ -19,7 +19,7 @@ public class UserHome extends AppCompatActivity {
     private FirebaseDatabase fbDB;
     private DatabaseReference dbRef;
 
-    private String userID;
+    private String userID, userLicence, userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +34,9 @@ public class UserHome extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             userID = extras.getString("userID");
+            userLicence = extras.getString("userLicence");
+            userName = extras.getString("userName");
+
         }
         welcomeUser();
 
@@ -60,6 +63,9 @@ public class UserHome extends AppCompatActivity {
     public void openBookTest(View view) {
         Intent i = new Intent(UserHome.this, UserBooking1.class);
         i.putExtra("userID", userID);
+        i.putExtra("userName", userName);
+        i.putExtra("userLicence", userLicence);
+
         startActivity(i);
 
     }
@@ -68,7 +74,8 @@ public class UserHome extends AppCompatActivity {
     }
 
     public void logoutUser(View view) {
-        Intent i = new Intent(UserHome.this, MainActivity.class);
+        Intent intent = new Intent(UserHome.this, MainActivity.class);
+        startActivity(intent);
 
     }
 }

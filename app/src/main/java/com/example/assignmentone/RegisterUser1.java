@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ public class RegisterUser1 extends AppCompatActivity {
     private DatabaseReference dbRef;
 
     EditText et_email, et_password, et_confirmPassword;
+    Button btn_next;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,8 @@ public class RegisterUser1 extends AppCompatActivity {
         et_email = findViewById(R.id.et_email);
         et_password = findViewById(R.id.et_password);
         et_confirmPassword = findViewById(R.id.et_confirmPassword);
+        btn_next = findViewById(R.id.btn_regUser_next);
+
     }
 
     public void userReg1Next(View view) {
@@ -45,24 +49,33 @@ public class RegisterUser1 extends AppCompatActivity {
         String password = et_password.getText().toString().trim();
         String password2 = et_confirmPassword.getText().toString().trim();
 
-        dbRef.child("users").addValueEventListener(new ValueEventListener() {
+        dbRef.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 //check if the table user table exists
                 if (snapshot.exists()) {
                     //check if a user in the db doesn't already has that email
-                    if (!snapshot.hasChild(email)) {
+                    int emailCount = 0;
+                    for (DataSnapshot uDB : snapshot.getChildren()) {
+                        String dbEmail = uDB.child("email").getValue(String.class);
+                        if(dbEmail.equals(email)){
+                            emailCount++;
+                        }
+                    }
+                    if(emailCount == 0){
                         validateFields(email, password, password2);
 
-                    } else {
-                        Toast.makeText(RegisterUser1.this, "That email is already registered",
-                                Toast.LENGTH_SHORT).show();
-                        et_email.requestFocus();
                     }
+                    else{
+                        Toast.makeText(RegisterUser1.this, "Email already registered", Toast.LENGTH_SHORT).show();
+
+                    }
+
                 }
                 //table does not exist so skip email check
-                else{
+                else if(!snapshot.exists()){
                     validateFields(email, password, password2);
                 }
             }

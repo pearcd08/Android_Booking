@@ -1,5 +1,6 @@
 package com.example.assignmentone;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,21 +8,16 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-
 public class TimeBooking_Adapter extends RecyclerView.Adapter<TimeBooking_Holder> {
-    String[] data;
-    int[] timeSlots;
+    String[] times;
+    String[] availability;
+    String[] instructors;
 
-
-
-    public TimeBooking_Adapter(String[] data, int[] timeSlotBookings) {
-        this.data = data;
-        this.timeSlots = timeSlotBookings;
-
+    public TimeBooking_Adapter(String[] timeArray, String[] availability, String[] instructors) {
+        this.times = timeArray;
+        this.availability = availability;
+        this.instructors = instructors;
     }
-
-
 
     @NonNull
     @Override
@@ -36,12 +32,27 @@ public class TimeBooking_Adapter extends RecyclerView.Adapter<TimeBooking_Holder
 
     @Override
     public void onBindViewHolder(@NonNull TimeBooking_Holder holder, int position) {
-        holder.tvTime.setText(data[position]);
-        holder.tvInstructor.setText("Bookings Available: "+String.valueOf(timeSlots[position]));
+        holder.tv_Time.setText(times[position]);
+        holder.tv_BookingsAvailable.setText(availability[position]);
+
+
+if (holder.tv_BookingsAvailable.getText().toString().equals("BOOKED")) {
+            holder.tv_Time.setBackgroundColor(Color.parseColor("#FF7F7F"));
+            holder.tv_Time.setClickable(false);
+
+        } else if(holder.tv_BookingsAvailable.getText().toString().equals("AVAILABLE")){
+            holder.tv_Time.setBackgroundColor(Color.parseColor("#FFFFFF"));
+             holder.tv_Time.setClickable(true);    }
+
+        holder.tv_Instructor.setText(instructors[position]);
+
+
+
+
     }
 
     @Override
     public int getItemCount() {
-        return data.length;
+        return times.length;
     }
 }

@@ -42,7 +42,7 @@
 
             <TextView
                 android:id="@+id/tv_confirmBooking_student"
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:text="FirstName and LastName "
                 android:textColor="@color/black"
@@ -67,7 +67,7 @@
 
             <TextView
                 android:id="@+id/tv_confirmBooking_date"
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:text="13/13/2222"
                 android:textColor="@color/black"
@@ -92,7 +92,7 @@
 
             <TextView
                 android:id="@+id/tv_confirmBooking_time"
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:text="12:00"
                 android:textColor="@color/black"
@@ -117,12 +117,11 @@
 
             <TextView
                 android:id="@+id/tv_confirmBooking_instructor"
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:text="13/13/2222"
+                android:text="hello"
                 android:textColor="@color/black"
                 android:textSize="16dp" />
-
         </LinearLayout>
 
 
@@ -146,7 +145,8 @@
             android:gravity="center"
             android:text="Back"
             android:textColor="@color/black"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:onClick="btn_confirmBooking_back"/>
 
         <Button
             android:id="@+id/btn_confirmBooking_confirm"
@@ -158,7 +158,8 @@
             android:gravity="center"
             android:text="Confirm"
             android:textColor="@color/black"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:onClick="confirmBooking"/>
 
 
     </LinearLayout>
