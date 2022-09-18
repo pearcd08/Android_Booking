@@ -17,11 +17,9 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText txtEmail, txtPassword;
-
+    private EditText txtEmail, txtPassword;
     private FirebaseDatabase fbDB;
     private DatabaseReference dbRef;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

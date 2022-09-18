@@ -24,6 +24,12 @@ public class AdminHome extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openViewDates(View view) {
+        Intent intent = new Intent(this, DisplayDates.class);
+        startActivity(intent);
+    }
+
+
     public void logoutAdmin(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

@@ -21,8 +21,6 @@
         android:layout_marginBottom="50dp"
         />
 
-
-
     <EditText
         android:id="@+id/txt_instructorFirstName"
         android:layout_width="300dp"

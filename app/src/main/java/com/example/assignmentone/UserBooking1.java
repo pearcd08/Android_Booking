@@ -57,6 +57,7 @@ public class UserBooking1 extends AppCompatActivity implements DatePickerDialog.
         //disable the button on load
 
 
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             userID = extras.getString("userID");
@@ -209,6 +210,7 @@ public class UserBooking1 extends AppCompatActivity implements DatePickerDialog.
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 String[] instructorsForBooking = new String[timeArray.length];
+                int[] instructorsForBookingInt = new  int[timeArray.length];
                 int bookedDateCount = 0;
                 for (DataSnapshot bookingData : snapshot.getChildren()) {
                     String dbDate = bookingData.child("date"
@@ -216,17 +218,18 @@ public class UserBooking1 extends AppCompatActivity implements DatePickerDialog.
                     String dbTime = bookingData.child("time").getValue(String.class);
                     String dbInstructorName = bookingData.child("instructorName").getValue(String.class);
                     for (int i = 0; i < timeArray.length; i++) {
-                        ArrayList<String> instructorsToRemove = new ArrayList<String>();
-                        instructorsToRemove = (ArrayList) instructorsArray.clone();
+                        ArrayList<String> instructorsToAdd = new ArrayList<String>();
+                        instructorsToAdd = (ArrayList) instructorsArray.clone();
                         int instructorBookedCount = 0;
                         if (dbDate.equals(newDate) && dbTime.equals(timeArray[i])) {
                             bookedDateCount++;
-                            for (int j = 0; j < instructorsToRemove.size(); j++) {
-                                if (instructorsToRemove.contains(dbInstructorName)) {
+                            for (int j = 0; j < instructorsToAdd.size(); j++) {
+                                if (instructorsToAdd.contains(dbInstructorName)) {
                                     instructorBookedCount++;
                                     instructorsForBooking[i] = dbInstructorName;
                                 }
                             }
+                            instructorsForBookingInt[i] = (instructorsArray.size() - instructorBookedCount);
 
                         }
                         if(instructorBookedCount == 0){
@@ -234,7 +237,6 @@ public class UserBooking1 extends AppCompatActivity implements DatePickerDialog.
                             instructorsForBooking[i] = instructorsArray.get(selectedInstructor);
 
                         }
-
 
                     }
                  /*  TimeBooking_Adapter adapter = new TimeBooking_Adapter
@@ -247,6 +249,7 @@ public class UserBooking1 extends AppCompatActivity implements DatePickerDialog.
                     for (int i = 0; i < timeArray.length; i++){
                         int selectedInstructor = (int) (Math.random() * instructorsArray.size());
                         instructorsForBooking[i] = instructorsArray.get(selectedInstructor);
+
 
                     }
 

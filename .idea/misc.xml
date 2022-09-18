@@ -5,7 +5,10 @@
       <map>
         <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/drawable/ic_calender_foreground.xml" value="0.147" />
         <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/layout/activity_admin_menu.xml" value="0.1" />
+        <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/layout/activity_bar_graph.xml" value="0.128125" />
+        <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/layout/activity_bar_graph_days.xml" value="0.14023086789226166" />
         <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/layout/activity_confirm_booking.xml" value="0.25" />
+        <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/layout/activity_display_dates.xml" value="0.22119037568594344" />
         <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/layout/activity_register_instructor.xml" value="0.25" />
         <entry key="..\:/AndroidApps/AssignmentOne/app/src/main/res/layout/activity_register_user.xml" value="0.1" />

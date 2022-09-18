@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#004584"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".DisplayDates">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="30dp"
+        android:gravity="center">
+
+
+        <TextView
+            android:id="@+id/txt_userbooking_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginRight="15dp"
+            android:fontFamily="@font/bungee"
+            android:text="Select Date"
+            android:textColor="#FFDF35"
+            android:textSize="36dp" />
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:onClick="displayCalendar"
+            android:src="@drawable/ic_calender_foreground" />
+
+
+    </LinearLayout>
+
+
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/time_graph"
+        android:layout_width="320dp"
+        android:layout_height="200dp"
+
+        />
+
+
+    <Button
+
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="25dp"
+        android:backgroundTint="#FFDF35"
+        android:fontFamily="@font/bungee"
+        android:gravity="center"
+        android:onClick="displayDates"
+        android:text="Back"
+        android:textColor="@color/black"
+        android:textSize="24dp" />
+
+
+</LinearLayout>

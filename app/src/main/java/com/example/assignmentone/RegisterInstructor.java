@@ -21,7 +21,7 @@ public class RegisterInstructor extends AppCompatActivity {
 
     private FirebaseDatabase fbDB;
     private DatabaseReference dbRef;
-    EditText txt_fName, txt_lName, txt_phone;
+    private EditText txt_fName, txt_lName, txt_phone;
 
 
     @Override

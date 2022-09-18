@@ -26,8 +26,8 @@ public class RegisterUser1 extends AppCompatActivity {
     private FirebaseDatabase fbDB;
     private DatabaseReference dbRef;
 
-    EditText et_email, et_password, et_confirmPassword;
-    Button btn_next;
+    private EditText et_email, et_password, et_confirmPassword;
+    private Button btn_next;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

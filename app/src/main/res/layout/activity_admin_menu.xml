@@ -53,6 +53,18 @@
         android:backgroundTint="#FFDF35"
         android:fontFamily="@font/bungee"
         android:gravity="center"
+        android:onClick="openViewDates"
+        android:text="View Dates"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:backgroundTint="#FFDF35"
+        android:fontFamily="@font/bungee"
+        android:gravity="center"
         android:onClick="logoutAdmin"
         android:text="Logout"
         android:textColor="@color/black"

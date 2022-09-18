@@ -18,7 +18,6 @@ public class UserHome extends AppCompatActivity {
     private TextView tvWelcome;
     private FirebaseDatabase fbDB;
     private DatabaseReference dbRef;
-
     private String userID, userLicence, userName;
 
     @Override
@@ -34,8 +33,9 @@ public class UserHome extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             userID = extras.getString("userID");
-            userLicence = extras.getString("userLicence");
             userName = extras.getString("userName");
+            userLicence = extras.getString("userLicence");
+
 
         }
         welcomeUser();
