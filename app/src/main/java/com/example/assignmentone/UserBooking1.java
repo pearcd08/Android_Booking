@@ -35,8 +35,8 @@ public class UserBooking1 extends AppCompatActivity implements DatePickerDialog.
     private DatabaseReference dbRef;
     private RecyclerView rvTime;
     private TextView tv_date;
-    private ArrayList<String> instructorsArray = new ArrayList<>();
-    private ArrayList<String> availableInstructorsArray = new ArrayList<>();
+    private final ArrayList<String> instructorsArray = new ArrayList<>();
+    private final ArrayList<String> availableInstructorsArray = new ArrayList<>();
 
 
     @Override

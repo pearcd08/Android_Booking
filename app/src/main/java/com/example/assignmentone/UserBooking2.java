@@ -32,10 +32,10 @@ public class UserBooking2 extends AppCompatActivity {
         fbDB = FirebaseDatabase.getInstance();
         dbRef = fbDB.getReference();
 
-        tv_student = (TextView) findViewById(R.id.tv_confirmBooking_student);
-        tv_date = (TextView) findViewById(R.id.tv_confirmBooking_date);
-        tv_time = (TextView) findViewById(R.id.tv_confirmBooking_time);
-        tv_instructor = (TextView) findViewById(R.id.tv_confirmBooking_instructor);
+        tv_student = findViewById(R.id.tv_confirmBooking_student);
+        tv_date = findViewById(R.id.tv_confirmBooking_date);
+        tv_time = findViewById(R.id.tv_confirmBooking_time);
+        tv_instructor = findViewById(R.id.tv_confirmBooking_instructor);
 
 
 
@@ -93,5 +93,5 @@ public class UserBooking2 extends AppCompatActivity {
         intent.putExtra("userName", userName);
         intent.putExtra("userLicence", userLicence);
         startActivity(intent);
-;    }
+    }
 }

@@ -56,14 +56,14 @@ public class ViewBookingsLicence extends AppCompatActivity {
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
 
-        recyclerView = (RecyclerView) findViewById(R.id.rv_bookings_by_licence);
+        recyclerView = findViewById(R.id.rv_bookings_by_licence);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
 
         //spinner = (Spinner) findViewById(R.id.spin_licence);
-        et_licence = (EditText) findViewById(R.id.et_viewBooking_licence);
+        et_licence = findViewById(R.id.et_viewBooking_licence);
 
     }
 

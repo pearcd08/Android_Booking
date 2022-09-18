@@ -5,9 +5,8 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_margin="10dp"
-    android:backgroundTint="#FFDF35"
-    app:cardCornerRadius="40dp"
-
+    android:backgroundTint="#FFFFFF"
+    app:cardCornerRadius="25dp"
     >
 
     <TextView
@@ -18,7 +17,7 @@
         android:hint="Name: First + Last"
         android:textStyle="bold"
         android:textAlignment="center"
-        android:textSize="20dp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/tv_viewBooking_date"
@@ -28,7 +27,7 @@
         android:hint="Time 12:00 on 14/12/2022"
         android:textStyle="bold"
         android:textAlignment="center"
-        android:textSize="20dp" />
+        android:textSize="20sp" />
 
 
     <TextView
@@ -37,10 +36,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:layout_marginBottom="12dp"
-        android:hint="Instructor: Mr Blah Blah"
+        android:hint="Instructor: JOHN SMITH"
         android:textStyle="bold"
         android:textAlignment="center"
-        android:textSize="20dp" />
+        android:textSize="20sp" />
 
 
 </androidx.cardview.widget.CardView>

@@ -41,7 +41,7 @@ public class DisplayDates extends AppCompatActivity implements DatePickerDialog.
 
         fbDB = FirebaseDatabase.getInstance();
         dbRef = fbDB.getReference();
-        tv_date =(TextView) findViewById(R.id.txt_userbooking_date);
+        tv_date = findViewById(R.id.txt_userbooking_date);
 
 
         showCalendar();
@@ -118,7 +118,7 @@ public class DisplayDates extends AppCompatActivity implements DatePickerDialog.
 
     public void createGraph(String[] timeArray, int[] bookedTimes) {
 
-        graph = (GraphView) findViewById(R.id.time_graph);
+        graph = findViewById(R.id.time_graph);
 
         LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[]{
 

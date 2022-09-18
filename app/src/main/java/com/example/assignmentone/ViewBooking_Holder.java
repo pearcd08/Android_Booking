@@ -15,8 +15,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ViewBooking_Holder extends RecyclerView.ViewHolder {
 
-    private FirebaseDatabase fbDB;
-    private DatabaseReference dbRef;
+    private final FirebaseDatabase fbDB;
+    private final DatabaseReference dbRef;
     View mView;
 
 

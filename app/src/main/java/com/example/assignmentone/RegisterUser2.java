@@ -122,24 +122,16 @@ public class RegisterUser2 extends AppCompatActivity {
     }
 
     private boolean checkValues2(String fName, String lName, String licence) {
-        if (et_fName.getText().toString().isEmpty() ||
-                et_lName.getText().toString().isEmpty() ||
-                et_licence.getText().toString().isEmpty()) {
-            return false;
-        } else {
-            return true;
-
-        }
+        return !et_fName.getText().toString().isEmpty() &&
+                !et_lName.getText().toString().isEmpty() &&
+                !et_licence.getText().toString().isEmpty();
 
 
     }
 
     public static boolean checkLicence(String licence) {
         String licencePattern = "^[a-zA-Z]{2}[0-9]{6}$";
-        if (licence.matches(licencePattern)) {
-            return true;
-        }
-        return false;
+        return licence.matches(licencePattern);
 
     }
 

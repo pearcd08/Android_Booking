@@ -88,10 +88,7 @@ public class RegisterInstructor extends AppCompatActivity {
     }
 
     private boolean checkValues(String fName, String lName, String phone) {
-        if (fName.isEmpty() || lName.isEmpty() || phone.isEmpty()) {
-            return false;
-        }
-        return true;
+        return !fName.isEmpty() && !lName.isEmpty() && !phone.isEmpty();
 
 
     }

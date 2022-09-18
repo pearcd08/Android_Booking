@@ -48,7 +48,7 @@ public class UserHome extends AppCompatActivity {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                final String userName = snapshot.child(userID).child("name").getValue(String.class);
+                userName = snapshot.child(userID).child("name").getValue(String.class);
                 tvWelcome.setText("Welcome " + userName);
 
             }
